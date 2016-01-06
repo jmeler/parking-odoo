@@ -1,6 +1,6 @@
 # Parking (I)
 
-A basic Odoo Module.
+A basic Odoo Module (for Odoo v8)
 
 **Installation**
 * Download folder parking1
