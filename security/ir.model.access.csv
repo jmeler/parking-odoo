@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_parking_parking,parking.parking,model_parking_parking,,1,0,0,0
+access_parking_plaza,parking.plaza,model_parking_plaza,,1,0,0,0
