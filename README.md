@@ -9,5 +9,5 @@ A basic Odoo Module.
 * Install module
 
 
-**Documentation (in Spanish)**: 
+**Documentation** (Spanish): 
 http://blog.skills.cat/modulo-parking-i/
