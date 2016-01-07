@@ -3,10 +3,9 @@
 A basic Odoo Module (for Odoo v8)
 
 **Installation**
-* Download ZIP and unzip
+* Download ZIP and unzip into addons odoo folder
 * Rename **parking-odoo** to **parking**
-* Move folder **parking** to addons odoo folder
-* Install module
+* Install module (from Odoo UI)
 
 
 **Documentation** (Spanish): 
