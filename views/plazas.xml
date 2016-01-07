@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+		<!-- Buscador con filtro y agrupación -->
+		<record model="ir.ui.view" id="plazas_search_view">
+            <field name="name">plaza.search</field>
+            <field name="model">parking.plaza</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="numero"/>
+                    <filter name="filter_disponible" string="Disponibles" domain="[('disponible', '=', True)]"/>
+					<group string="Agrupa por">
+						<filter name="group_by_planta" string="Planta" context="{'group_by': 'planta'}"/>
+					</group>
+                </search>
+            </field>
+        </record>
+	
+		<!-- La vista lista, en odoo se denomina tree -->
+		<record model="ir.ui.view" id="plaza_tree_view">
+            <field name="name">plaza.tree</field>
+            <field name="model">parking.plaza</field>
+            <field name="arch" type="xml">
+				<tree string="Lista de plazas">
+						<field name="numero"/>
+						<field name="planta"/>
+						<field name="disponible" />
+				</tree>
+			</field>
+        </record>
+		
+		<!-- La vista formulario, en odoo denominada form -->
+		<record model="ir.ui.view" id="plaza_form_view">
+            <field name="name">plaza.form</field>
+            <field name="model">parking.plaza</field>
+            <field name="arch" type="xml">
+                <form string="Plaza Form">
+                    <sheet>
+                        <group>
+                            <field name="numero"/>
+                            <field name="planta"/>
+							<field name="disponible"/>
+                        </group>
+						<notebook>
+							<page string="Reserva">
+                                <field name="reserva_ids">
+                                    <tree string="Reservas de esta plaza">
+                                        <field name="usuario_id" string="Usuario"/>
+										<field name="fecha_inicio"/>
+										<field name="fecha_fin"/>
+                                    </tree>
+                                </field>
+                            </page>
+						</notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+		
+		
+		<!-- La acción asociada al menú: mostrará dos vistas (formato lista y formato formulario) definidas más arriba -->
+		<record model="ir.actions.act_window" id="plaza_list_action">
+            <field name="name">Plazas de parking</field>
+            <field name="res_model">parking.plaza</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Añade la primera plaza de parking
+                </p>
+            </field>
+        </record>
+       
+		<!-- El menú -->
+		<menuitem id="main_parking_menu" name="Parking"/>
+        <menuitem id="parking_menu" name="Parking"
+                  parent="main_parking_menu"/>
+       <menuitem id="plazas_menu" name="Plazas" parent="parking_menu"
+                  action="plaza_list_action"/>
+
+        
+			 
+    </data>
+</openerp>

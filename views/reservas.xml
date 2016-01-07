@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+		<!-- La vista lista de reservas, en odoo se denomina tree -->
+		<record model="ir.ui.view" id="reserva_tree_view">
+            <field name="name">Reservas de parking</field>
+            <field name="model">parking.reserva</field>
+            <field name="arch" type="xml">
+				<tree string="Reservas">
+						<field name="numero_id" string="Número de plaza:"/>
+						<field name="usuario_id" string="Asinada a:"/>
+						<field name="fecha_inicio" string="Desde:"/>
+						<field name="fecha_fin" string="Hasta:"/>
+				</tree>
+			</field>
+        </record>
+		<!-- La vista formulario reservas, en odoo denominada form -->
+		<record model="ir.ui.view" id="reserva_form_view">
+            <field name="name">Formulario de reserva</field>
+            <field name="model">parking.reserva</field>
+            <field name="arch" type="xml">
+                <form string="Reserva Form">
+                    <sheet>
+                        <group>
+                            <field name="numero_id" string="Número de plaza:"/>
+                            <field name="usuario_id" string="Asinada a:"/>
+							<field name="fecha_inicio" string="Desde:"/>
+							<field name="fecha_fin" string="Hasta:"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+		
+		<!-- calendar view -->
+        <record model="ir.ui.view" id="reservas_calendar_view">
+            <field name="name">Calendario reservas</field>
+            <field name="model">parking.reserva</field>
+            <field name="arch" type="xml">
+                <calendar string="Reservas Calendar" date_start="fecha_inicio"
+                          date_stop="fecha_fin"
+                          color="numero_id">
+                    <field name="numero_id"/>
+					<field name="usuario_id"/>
+                </calendar>
+            </field>
+        </record>
+		
+		<record model="ir.ui.view" id="reservas_gantt_view">
+            <field name="name">Diagrama de Gantt de reservas</field>
+            <field name="model">parking.reserva</field>
+            <field name="arch" type="xml">
+                <gantt string="Gantt de reservas" 
+					   date_start="fecha_inicio" 
+					   date_stop="fecha_fin" 
+					   color="numero_id" 
+					   default_group_by='numero_id'>
+					<field name="numero_id"/>
+                </gantt>
+            </field>
+        </record>
+		
+		<!-- La acción asociada al menú: mostrará dos vistas (formato lista y formato formulario) definidas más arriba -->
+		<record model="ir.actions.act_window" id="reserva_list_action">
+            <field name="name">Reservas</field>
+            <field name="res_model">parking.reserva</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,calendar,gantt</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Añade la primera reserva
+                </p>
+            </field>
+        </record>
+       
+		<!-- El menú -->
+
+       <menuitem id="reservas_menu" name="Reservas" parent="parking_menu"
+                  action="reserva_list_action"/>
+
+        
+			 
+    </data>
+</openerp>

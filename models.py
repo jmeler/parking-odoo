@@ -14,4 +14,13 @@ class plaza(models.Model):
     ], default='1')
 	disponible = fields.Boolean(string="Disponible")
 	usuario = fields.Many2one('res.users')
-	
+	reserva_ids = fields.One2many(
+        'parking.reserva', 'numero_id', string="Plaza")
+
+class reserva(models.Model) :
+	_name = 'parking.reserva'
+	_rec_name = 'usuario_id'
+	numero_id = fields.Many2one('parking.plaza')
+	usuario_id = fields.Many2one('res.users')
+	fecha_inicio = fields.Date()
+	fecha_fin = fields.Date()
