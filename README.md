@@ -12,6 +12,6 @@ A basic Odoo Module (for Odoo v8)
 
 http://blog.skills.cat/modulo-parking-i/
 
-**Versions**
+**Other versions**
 
 See branches
