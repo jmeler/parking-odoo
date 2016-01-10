@@ -7,6 +7,6 @@ Added new window "Reservas" with some views (calendar, gantt) and a One2many rel
 
 http://blog.skills.cat/modulo-parking-ii/
 
-**Versions:**
+**Other versions:**
 
 See branches
